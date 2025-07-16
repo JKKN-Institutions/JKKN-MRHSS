@@ -36,7 +36,7 @@ const HeroSection = () => {
             </Link>
             <Link href="/contact" className="w-full sm:w-auto">
               <button
-                className="w-full sm:w-auto px-5 py-2 rounded-full font-semibold text-white text-base border-2 border-white/60 bg-transparent hover:bg-white/10 transition-all cursor-pointer"
+                className="w-full sm:w-auto px-5 py-2 rounded-full font-semibold text-white text-base bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-md hover:from-blue-600 hover:to-pink-600 transition-all cursor-pointer"
               >
                 Contact Us
               </button>
