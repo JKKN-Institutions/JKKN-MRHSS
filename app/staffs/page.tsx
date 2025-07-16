@@ -513,7 +513,7 @@ export default function StaffDetails() {
                   onClick={() => handleStaffClick(staff)}
                   layout
                 >
-                  <div className="bg-white/80 backdrop-blur-xl rounded-3xl overflow-hidden shadow-xl border border-white/20 transition-all duration-500 group-hover:shadow-2xl">
+                  <div className="bg-white/80 backdrop-blur-xl rounded-3xl overflow-hidden shadow-xl transition-all duration-500 group-hover:shadow-2xl">
                     {/* Image Section */}
                     <div className="relative h-80 overflow-hidden">
                       <motion.div
