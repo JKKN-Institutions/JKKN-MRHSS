@@ -19,7 +19,7 @@ const HeroSection = () => {
 
       {/* Glassmorphism Card */}
       <div className="relative z-20 flex flex-col items-center justify-center w-full px-4">
-        <div className="mx-auto w-full max-w-xl mt-12 rounded-2xl bg-white/20 backdrop-blur-lg shadow-xl py-12 px-6 flex flex-col items-center border border-white/30">
+        <div className="mx-auto w-full max-w-xl mt-12 rounded-2xl bg-white/20 backdrop-blur-lg shadow-xl py-12 px-6 flex flex-col items-center">
           <h1 className="text-2xl md:text-3xl font-extrabold text-white text-center mb-4 tracking-wide">
             JKKN<span className="inline-block mx-2" />MATRICULATION HIGHER SECONDARY SCHOOL
           </h1>
