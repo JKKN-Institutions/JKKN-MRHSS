@@ -237,7 +237,7 @@ const AboutSection = () => {
                 viewport={{ once: true }}
               >
                 <motion.div
-                  className="p-6 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-gray-100"
+                  className="p-6 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg"
                   variants={fadeInUp}
                   whileHover={{ scale: 1.02, y: -5 }}
                   transition={{ duration: 0.3 }}
@@ -255,7 +255,7 @@ const AboutSection = () => {
                 </motion.div>
 
                 <motion.div
-                  className="p-6 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-gray-100"
+                  className="p-6 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg"
                   variants={fadeInUp}
                   whileHover={{ scale: 1.02, y: -5 }}
                   transition={{ duration: 0.3 }}
@@ -312,7 +312,7 @@ const AboutSection = () => {
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                className="group relative p-6 bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
+                className="group relative p-6 bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
                 variants={fadeInUp}
                 whileHover={{ 
                   scale: 1.05, 
