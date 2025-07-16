@@ -204,7 +204,7 @@ const Navbar = () => {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`group rounded-full overflow-hidden w-8 h-8 flex items-center justify-center bg-white shadow-md border border-gray-200 transition-all duration-200 hover:ring-2 ${social.hoverColor}`}
+                  className={`group rounded-full overflow-hidden w-8 h-8 flex items-center justify-center bg-white shadow-md transition-all duration-200 hover:ring-2 ${social.hoverColor}`}
                   aria-label={social.label}
                 >
                   <Image
@@ -315,7 +315,7 @@ const Navbar = () => {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`group rounded-full overflow-hidden w-10 h-10 flex items-center justify-center bg-white shadow-md border border-gray-200 transition-all duration-200 hover:ring-2 ${social.hoverColor}`}
+                    className={`group rounded-full overflow-hidden w-10 h-10 flex items-center justify-center bg-white shadow-md transition-all duration-200 hover:ring-2 ${social.hoverColor}`}
                     aria-label={social.label}
                   >
                     <Image
