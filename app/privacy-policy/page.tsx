@@ -225,7 +225,7 @@ export default function PrivacyPolicyPage() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="max-w-4xl mx-auto"
           >
-            <div className="bg-white/70 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-xl">
+            <div className="bg-white/70 backdrop-blur-xl rounded-2xl p-6 shadow-xl">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">Quick Navigation</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {sections.map((section) => {
@@ -269,7 +269,7 @@ export default function PrivacyPolicyPage() {
               >
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
-                  <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-xl">
+                  <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-xl">
                     {/* Header */}
                     <div className="flex items-center space-x-4 mb-6">
                       <div className={`p-4 rounded-2xl bg-gradient-to-r ${section.gradient} shadow-lg`}>
@@ -305,7 +305,7 @@ export default function PrivacyPolicyPage() {
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.6, delay: 0.3 }}
-                          className="mt-6 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl border border-blue-100"
+                          className="mt-6 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl"
                         >
                           <div className="space-y-3">
                             {section.details.map((detail, detailIndex) => (
@@ -354,7 +354,7 @@ export default function PrivacyPolicyPage() {
                   <div className="grid md:grid-cols-3 gap-6">
                     <motion.div
                       whileHover={{ scale: 1.05, y: -5 }}
-                      className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20"
+                      className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center"
                     >
                       <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4">
                         <Phone className="w-6 h-6" />
@@ -365,7 +365,7 @@ export default function PrivacyPolicyPage() {
 
                     <motion.div
                       whileHover={{ scale: 1.05, y: -5 }}
-                      className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20"
+                      className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center"
                     >
                       <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4">
                         <Mail className="w-6 h-6" />
@@ -376,7 +376,7 @@ export default function PrivacyPolicyPage() {
 
                     <motion.div
                       whileHover={{ scale: 1.05, y: -5 }}
-                      className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20"
+                      className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center"
                     >
                       <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4">
                         <MapPin className="w-6 h-6" />
