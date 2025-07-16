@@ -304,7 +304,7 @@ export default function ExamDetailsPage() {
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
-                  className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
+                  className="bg-white rounded-2xl p-6 shadow-lg"
                   variants={itemVariants}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -335,7 +335,7 @@ export default function ExamDetailsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+              <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white">
                   <h3 className="text-2xl font-bold mb-2">Examination Pattern</h3>
                   <p className="text-blue-100">Comprehensive assessment schedule for all grade levels</p>
@@ -345,7 +345,7 @@ export default function ExamDetailsPage() {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                     {/* LKG to IX Pattern */}
                     <motion.div
-                      className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100"
+                      className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.6 }}
@@ -369,7 +369,7 @@ export default function ExamDetailsPage() {
                         ].map((exam, index) => (
                           <motion.div
                             key={exam.name}
-                            className="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-gray-100"
+                            className="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm"
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.8 + index * 0.1 }}
@@ -389,7 +389,7 @@ export default function ExamDetailsPage() {
 
                     {/* X to XII Pattern */}
                     <motion.div
-                      className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-100"
+                      className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.6 }}
@@ -413,7 +413,7 @@ export default function ExamDetailsPage() {
                         ].map((exam, index) => (
                           <motion.div
                             key={exam.name}
-                            className="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-gray-100"
+                            className="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm"
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.8 + index * 0.1 }}
@@ -485,7 +485,7 @@ export default function ExamDetailsPage() {
                 {filteredExams.map((exam: UpcomingExam | CompletedExam) => (
                   <motion.div
                     key={exam.id}
-                    className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+                    className="bg-white rounded-2xl shadow-lg overflow-hidden"
                     variants={cardVariants}
                     initial="rest"
                     whileHover="hover"
@@ -546,7 +546,7 @@ export default function ExamDetailsPage() {
                               View Details
                             </motion.button>
                             <motion.button
-                              className="px-6 py-3 border border-gray-200 text-gray-700 rounded-xl font-medium flex items-center gap-2 hover:bg-gray-50 transition-colors"
+                              className="px-6 py-3 text-gray-700 rounded-xl font-medium flex items-center gap-2 hover:bg-gray-50 transition-colors"
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                             >
