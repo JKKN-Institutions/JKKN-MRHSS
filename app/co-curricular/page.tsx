@@ -404,7 +404,7 @@ const CoCurricularPage = () => {
                 <Play className="w-5 h-5" />
                 <span>Explore Activities</span>
               </button>
-              <button className="bg-white/80 backdrop-blur-sm text-gray-700 px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-gray-200 hover:bg-white">
+              <button className="bg-white/80 backdrop-blur-sm text-gray-700 px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:bg-white">
                 View School Diary
               </button>
             </motion.div>
@@ -459,7 +459,7 @@ const CoCurricularPage = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
-              className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/50"
+              className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <div className="bg-gradient-to-r from-blue-500 to-purple-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
                 <BookOpen className="w-8 h-8 text-white" />
@@ -490,7 +490,7 @@ const CoCurricularPage = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/50"
+              className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <div className="bg-gradient-to-r from-green-500 to-emerald-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
                 <Trophy className="w-8 h-8 text-white" />
@@ -521,7 +521,7 @@ const CoCurricularPage = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/50"
+              className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <div className="bg-gradient-to-r from-orange-500 to-red-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
                 <Heart className="w-8 h-8 text-white" />
@@ -766,7 +766,7 @@ const CoCurricularPage = () => {
                 className={`p-4 rounded-xl font-semibold text-sm transition-all duration-300 transform hover:scale-105 ${
                   selectedActivity === activity.id
                     ? `bg-gradient-to-r ${activity.color} text-white shadow-lg scale-105`
-                    : "bg-white text-gray-700 shadow-md hover:shadow-lg border border-gray-200"
+                    : "bg-white text-gray-700 shadow-md hover:shadow-lg"
                 }`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
