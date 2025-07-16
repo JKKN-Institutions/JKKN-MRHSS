@@ -115,7 +115,6 @@ const customStyles = `
   .glass-card {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
   
@@ -263,13 +262,13 @@ const EnhancedSuccessCard = ({
     </div>
     
          <div className="relative">
-       <p className="text-black italic leading-relaxed text-sm bg-white/30 p-4 rounded-lg border border-white/20 font-medium">
+       <p className="text-black italic leading-relaxed text-sm bg-white/30 p-4 rounded-lg font-medium">
          "{quote}"
        </p>
        <div className="absolute -top-2 -left-2 text-3xl text-black/60">"</div>
      </div>
     
-    <div className="mt-4 flex justify-between items-center pt-4 border-t border-white/10">
+    <div className="mt-4 flex justify-between items-center pt-4">
       <div className="flex space-x-1">
         {[1,2,3,4,5].map((star) => (
           <Star key={star} className="w-4 h-4 text-yellow-400 fill-current" />
@@ -598,7 +597,7 @@ const JeeNeetPage = () => {
                <motion.button 
                  whileHover={{ scale: 1.05, y: -2 }}
                  whileTap={{ scale: 0.95 }}
-                 className="group px-10 py-5 glass-card rounded-2xl font-bold text-lg text-black hover:bg-white/20 transition-all duration-300 flex items-center space-x-3 border-2 border-black/20"
+                 className="group px-10 py-5 glass-card rounded-2xl font-bold text-lg text-black hover:bg-white/20 transition-all duration-300 flex items-center space-x-3"
                >
                  <Play className="w-5 h-5" />
                  <span>Watch Success Stories</span>
@@ -720,7 +719,7 @@ const JeeNeetPage = () => {
                initial={{ opacity: 0, scale: 0.95 }}
                whileInView={{ opacity: 1, scale: 1 }}
                transition={{ duration: 0.8 }}
-               className="glass-card rounded-3xl p-8 md:p-12 text-center relative overflow-hidden border-2 border-white/30"
+               className="glass-card rounded-3xl p-8 md:p-12 text-center relative overflow-hidden"
              >
                <div className="relative z-10">
                  <motion.div
