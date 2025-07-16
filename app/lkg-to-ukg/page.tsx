@@ -55,7 +55,7 @@ export default function KindergartenChrysalisPage() {
         {/* Hero Section with Glassmorphism */}
         <section className="relative w-full flex flex-col items-center justify-center py-20 px-4">
           <motion.div
-            className="relative z-10 max-w-3xl w-full mx-auto text-center rounded-3xl bg-white/30 backdrop-blur-lg shadow-2xl border border-white/30 p-10"
+            className="relative z-10 max-w-3xl w-full mx-auto text-center rounded-3xl bg-white/30 backdrop-blur-lg shadow-2xl p-10"
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
@@ -97,11 +97,12 @@ export default function KindergartenChrysalisPage() {
             >
               <Link href="/admissions">
                 <motion.button
+
                   className="px-8 py-3 rounded-full font-semibold text-white text-lg bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 shadow-lg hover:from-purple-600 hover:to-pink-600 transition-all"
                   whileHover={{ scale: 1.07 }}
                   whileTap={{ scale: 0.97 }}
                 >
-                  Enquire Admissions
+                  <a href="https://jkkn.in/admission-form">Enquire Admissions</a>
                 </motion.button>
               </Link>
             </motion.div>
@@ -149,7 +150,7 @@ export default function KindergartenChrysalisPage() {
           ].map((feature, idx) => (
             <motion.div
               key={feature.title}
-              className="bg-white/80 rounded-2xl shadow-xl p-8 flex flex-col items-center text-center border border-white/40 hover:scale-105 transition-transform relative overflow-hidden"
+              className="bg-white/80 rounded-2xl shadow-xl p-8 flex flex-col items-center text-center hover:scale-105 transition-transform relative overflow-hidden"
               variants={featureCardVariants}
               initial="hidden"
               animate="visible"

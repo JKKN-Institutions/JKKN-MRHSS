@@ -209,7 +209,7 @@ const AcademicsSection = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-300"
-            ><a href="http://localhost:3000/admissions">
+            ><a href="https://jkkn.in/admission-form">
               Apply Now</a>
             </motion.button>
           </div>
