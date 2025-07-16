@@ -249,11 +249,11 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="lg:hidden fixed left-0 right-0 top-16 bottom-0 bg-white shadow-lg mobile-nav border-t border-gray-100 z-40"
+            className="lg:hidden fixed left-0 right-0 top-16 bottom-0 bg-white shadow-lg mobile-nav z-40"
           >
             <div className="flex flex-col h-full px-4 py-4 overflow-y-auto">
               {navItems.map((item: any) => (
-                <div key={item.name} className="relative border-b border-gray-100 last:border-b-0">
+                <div key={item.name} className="relative last:border-b-0">
                   {item.href ? (
                     <Link
                       href={item.href}
@@ -306,7 +306,7 @@ const Navbar = () => {
                 </div>
               ))}
               {/* Social Media Images for Mobile */}
-              <div className="flex justify-center space-x-4 pt-6 mt-auto border-t border-gray-200">
+              <div className="flex justify-center space-x-4 pt-6 mt-auto">
                 {socialLinks.map((social) => (
                   <motion.a
                     key={social.label}
