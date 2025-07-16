@@ -451,7 +451,7 @@ export default function StaffDetails() {
         transition={{ delay: 1, duration: 0.8 }}
       >
         <div className="max-w-7xl mx-auto">
-          <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/20">
+          <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl">
             <div className="flex flex-col lg:flex-row gap-6 items-center">
               {/* Search Bar */}
               <div className="relative flex-1 w-full">
@@ -619,7 +619,7 @@ export default function StaffDetails() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-12 shadow-xl border border-white/20 max-w-md mx-auto">
+              <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-12 shadow-xl max-w-md mx-auto">
                 <Search className="w-16 h-16 mx-auto text-gray-400 mb-4" />
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">No Staff Found</h3>
                 <p className="text-gray-600 mb-6">
@@ -752,7 +752,7 @@ export default function StaffDetails() {
                           {selectedStaff.achievements.map((achievement: string, index: number) => (
                             <div
                               key={index}
-                              className="flex items-center p-4 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl border border-yellow-200"
+                              className="flex items-center p-4 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl"
                             >
                               <Award className="w-5 h-5 text-yellow-600 mr-3 flex-shrink-0" />
                               <span className="text-gray-800 font-medium">{achievement}</span>
