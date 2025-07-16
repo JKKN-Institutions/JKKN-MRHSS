@@ -161,7 +161,6 @@ const customStyles = `
   .glass-morphism {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   .hover-lift {
@@ -244,7 +243,7 @@ const InteractiveSubjectCard = ({ subject, category, index }: {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="interactive-card hover-lift bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 group"
+      className="interactive-card hover-lift bg-white rounded-2xl shadow-lg overflow-hidden group"
     >
       {/* Subject Header with Enhanced Hover Effects */}
       <motion.div 
@@ -398,14 +397,14 @@ const InteractiveSubjectCard = ({ subject, category, index }: {
 
         {/* Enhanced Assessment & Duration */}
         <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-gray-100"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
           <motion.div
             whileHover={{ scale: 1.02, x: 5 }}
-            className="p-3 rounded-lg bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100"
+            className="p-3 rounded-lg bg-gradient-to-r from-blue-50 to-indigo-50"
           >
             <h6 className="font-semibold text-gray-800 mb-2 flex items-center">
               <Award className="w-4 h-4 mr-2 text-blue-600" />
@@ -415,7 +414,7 @@ const InteractiveSubjectCard = ({ subject, category, index }: {
           </motion.div>
           <motion.div
             whileHover={{ scale: 1.02, x: 5 }}
-            className="p-3 rounded-lg bg-gradient-to-r from-green-50 to-emerald-50 border border-green-100"
+            className="p-3 rounded-lg bg-gradient-to-r from-green-50 to-emerald-50"
           >
             <h6 className="font-semibold text-gray-800 mb-2 flex items-center">
               <Clock className="w-4 h-4 mr-2 text-green-600" />

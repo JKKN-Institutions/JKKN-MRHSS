@@ -78,7 +78,7 @@ export default function School1To12Page() {
               </motion.span>
             </motion.h1>
             <motion.p
-              className="text-lg md:text-xl text-gray-700 mb-8"
+              className="text-lg md:text-xl text-gray-700 mb-8 text-justify"
               variants={heroVariants}
               initial="hidden"
               animate="visible"
