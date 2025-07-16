@@ -152,7 +152,7 @@ const AcademicsSection = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className={`${level.bgColor} rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100`}
+              className={`${level.bgColor} rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300`}
             >
               {/* Icon */}
               <div className="text-4xl mb-4 text-center">{level.icon}</div>
