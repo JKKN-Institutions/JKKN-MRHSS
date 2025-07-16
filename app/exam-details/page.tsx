@@ -434,34 +434,34 @@ export default function ExamDetailsPage() {
 
                   {/* Attendance Requirements */}
                   <motion.div
-                    className="bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl p-6 border border-orange-200"
+                    className="bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl p-4 sm:p-6 mt-6 flex flex-col gap-4"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.2 }}
                   >
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <div className="flex flex-col sm:flex-row items-start gap-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0">
                         <AlertTriangle className="w-6 h-6 text-white" />
                       </div>
-                      <div className="flex-1">
-                        <h4 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                      <div className="flex-1 w-full">
+                        <h4 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2 justify-center sm:justify-start">
                           <Users className="w-5 h-5 text-orange-500" />
                           Attendance Requirements
                         </h4>
-                        <div className="bg-white rounded-xl p-4 border border-orange-100">
-                          <div className="flex items-center gap-3 mb-3">
+                        <div className="bg-white rounded-xl p-4 sm:p-6">
+                          <div className="flex flex-col sm:flex-row items-center gap-3 mb-3">
                             <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
                               <span className="text-orange-600 font-bold text-sm">75%</span>
                             </div>
                             <span className="font-semibold text-gray-900">Minimum Attendance Required</span>
                           </div>
-                          <p className="text-gray-700 leading-relaxed">
+                          <p className="text-gray-700 leading-relaxed text-center sm:text-left">
                             Students will <strong>not be allowed to complete the year</strong> if they have secured less than 
                             <span className="text-orange-600 font-semibold"> 75% attendance</span>. 
                             Regular attendance is mandatory for academic progression.
                           </p>
-                          <div className="mt-4 p-3 bg-orange-50 rounded-lg border border-orange-100">
-                            <p className="text-sm text-orange-700 flex items-center gap-2">
+                          <div className="mt-4 p-3 bg-orange-50 rounded-lg">
+                            <p className="text-sm text-orange-700 flex items-center gap-2 justify-center sm:justify-start">
                               <Info className="w-4 h-4" />
                               This policy ensures consistent learning and academic excellence
                             </p>
