@@ -726,7 +726,7 @@ const CoCurricularPage = () => {
             transition={{ delay: 0.5, duration: 0.6 }}
             className="text-center mt-16"
           >
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-100">
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Stay Connected with Our School Diary</h3>
               <p className="text-gray-600 mb-6">
                 Stay informed about upcoming events and activities through our school diary, which offers regular updates on co-curricular happenings. 
