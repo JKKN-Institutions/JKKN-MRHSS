@@ -177,7 +177,7 @@ const Navbar = () => {
                     </button>
                   )}
                   {item.children && (
-                    <div className="absolute left-0 top-full mt-2 hidden group-hover:block min-w-[200px] bg-white shadow-lg rounded-lg z-50 border border-gray-100">
+                    <div className="absolute left-0 top-full mt-0 invisible opacity-0 group-hover:visible group-hover:opacity-100 hover:visible hover:opacity-100 pointer-events-none group-hover:pointer-events-auto hover:pointer-events-auto min-w-[200px] bg-white shadow-lg rounded-lg z-50 border border-gray-100 transition-all duration-200">
                       <div className="flex flex-col py-2">
                         {item.children.map((child: any) => (
                           <Link
