@@ -1,140 +1,125 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Calendar, MapPin, Users, Eye } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { Calendar, User, Eye, Tag } from 'lucide-react';
+import { format } from 'date-fns';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { getPosts } from '../admin/utils/storage';
+import { Post } from '../admin/types';
 
-const PastEventsPage = () => {
-  const router = useRouter();
+export default function PastEventsPage() {
+  const CATEGORY_NAME = 'Past Events'; // Fixed category for this page
+  const [posts, setPosts] = useState<Post[]>([]);
   const [search, setSearch] = useState('');
 
-  const eventsData = [
-    {
-      id: 1,
-      title: 'Annual Day Celebration 2024',
-      description: 'A grand celebration featuring cultural performances, award ceremonies, and showcase of student achievements throughout the year.',
-      image: '/images/photos/7.png',
-      date: '2024-03-20',
-      location: 'School Auditorium',
-      participants: '500+ Students',
-      category: 'Cultural'
-    },
-    {
-      id: 2,
-      title: 'Inter-School Science Fair',
-      description: 'Students from various schools participated in the regional science fair hosted by NV School. Many innovative projects were displayed.',
-      image: '/images/photos/8.png',
-      date: '2024-03-12',
-      location: 'Science Block',
-      participants: '200+ Students',
-      category: 'Academic'
-    },
-    {
-      id: 3,
-      title: 'Sports Championship 2024',
-      description: 'Annual sports championship with various athletic events including track and field, basketball, volleyball, and cricket matches.',
-      image: '/images/photos/9.png',
-      date: '2024-02-25',
-      location: 'Sports Ground',
-      participants: '300+ Athletes',
-      category: 'Sports'
-    },
-    {
-      id: 4,
-      title: 'Environmental Awareness Program',
-      description: 'A comprehensive program focusing on environmental conservation, waste management, and sustainable living practices.',
-      image: '/images/photos/10.png',
-      date: '2024-02-18',
-      location: 'School Campus',
-      participants: '400+ Students',
-      category: 'Environment'
-    },
-    {
-      id: 5,
-      title: 'Career Guidance Workshop',
-      description: 'Industry experts and career counselors conducted sessions to guide students about various career opportunities and pathways.',
-      image: '/images/photos/11.png',
-      date: '2024-02-10',
-      location: 'Conference Hall',
-      participants: '150+ Students',
-      category: 'Career'
-    },
-    {
-      id: 6,
-      title: 'Traditional Arts Festival',
-      description: 'Celebration of traditional Indian arts including classical dance, music, painting, and handicrafts demonstrations.',
-      image: '/images/photos/12.png',
-      date: '2024-01-28',
-      location: 'Cultural Center',
-      participants: '250+ Participants',
-      category: 'Cultural'
-    }
-  ];
+  useEffect(() => {
+    // Load ONLY published posts from "Past Events" category
+    const loadedPosts = getPosts().filter(
+      (post) => post.status === 'published' && post.category === CATEGORY_NAME
+    );
+    setPosts(loadedPosts);
+  }, []);
 
-  const handleBackClick = () => {
-    router.back();
-  };
-
-  // Filter events by title
-  const filteredEvents = eventsData.filter(event =>
-    event.title.toLowerCase().includes(search.toLowerCase())
-  );
+  // Filter posts by search
+  const filteredPosts = posts
+    .filter((post) =>
+      post.title.toLowerCase().includes(search.toLowerCase()) ||
+      post.shortDescription.toLowerCase().includes(search.toLowerCase())
+    )
+    .sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
+
+      {/* Hero Section */}
+      <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white py-20 pt-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-5xl font-bold mb-4"
+          >
+            Past Events
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-xl opacity-90"
+          >
+            Relive our memorable moments and celebrations
+          </motion.p>
+        </div>
+      </div>
+
       {/* Search Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-4 flex justify-end">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <input
           type="text"
           value={search}
-          onChange={e => setSearch(e.target.value)}
-          placeholder="Search news by heading..."
-          className="w-full max-w-md px-4 py-2 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg bg-white border border-white text-black sm:border-gray-300 sm:text-gray-900"
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search past events by title or description..."
+          className="w-full px-4 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white border border-gray-300 text-gray-900"
         />
       </div>
+
       {/* Events Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {filteredEvents.length === 0 ? (
-            <div className="col-span-full text-center text-gray-500 text-lg py-20">
-              No events found.
-            </div>
-          ) : (
-            filteredEvents.map((event, index) => (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        {filteredPosts.length === 0 ? (
+          <div className="text-center py-20">
+            <Calendar className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">No past events found</h3>
+            <p className="text-gray-600">
+              {search
+                ? 'Try adjusting your search'
+                : 'Check back soon for past event highlights!'}
+            </p>
+          </div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {filteredPosts.map((post, index) => (
               <motion.div
-                key={event.id}
+                key={post.id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ 
-                  y: -8, 
-                  transition: { duration: 0.3 }
+                whileHover={{
+                  y: -8,
+                  transition: { duration: 0.3 },
                 }}
                 className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
               >
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={event.image} 
-                    alt={event.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                <div className="relative h-56 overflow-hidden">
+                  {post.thumbnail && post.thumbnail !== '/images/posts/default.jpg' ? (
+                    <img
+                      src={post.thumbnail}
+                      alt={post.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+                      <Calendar className="w-20 h-20 text-white/50" />
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+
                   {/* Category Badge */}
                   <div className="absolute top-4 left-4">
-                    <span className="bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                      {event.category}
+                    <span className="bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+                      <Tag className="w-3.5 h-3.5" /> {post.category}
                     </span>
                   </div>
+
                   {/* View Button on Hover */}
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -149,38 +134,60 @@ const PastEventsPage = () => {
                     </motion.button>
                   </motion.div>
                 </div>
+
                 {/* Content */}
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-300">
-                    {event.title}
+                    {post.title}
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
-                    {event.description}
+                    {post.shortDescription}
                   </p>
+
                   {/* Meta Information */}
                   <div className="space-y-2 text-xs text-gray-500">
-                    <div className="flex items-center space-x-1">
-                      <Calendar className="w-4 h-4" />
-                      <span>{new Date(event.date).toLocaleDateString()}</span>
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        <span>{format(new Date(post.publishedDate), 'MMM dd, yyyy')}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <User className="w-4 h-4" />
+                        <span>{post.author}</span>
+                      </div>
                     </div>
-                    <div className="flex items-center space-x-1">
-                      <MapPin className="w-4 h-4" />
-                      <span>{event.location}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <Users className="w-4 h-4" />
-                      <span>{event.participants}</span>
-                    </div>
+                  </div>
+
+                  {/* Read More Link */}
+                  <div className="mt-4 pt-4 border-t border-gray-200">
+                    <Link
+                      href={`/post/${post.id}`}
+                      className="text-purple-600 hover:text-purple-700 font-semibold text-sm flex items-center gap-2 group/link"
+                    >
+                      Read Full Story
+                      <svg
+                        className="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </motion.div>
-            ))
-          )}
-        </motion.div>
+            ))}
+          </motion.div>
+        )}
       </div>
+
       <Footer />
     </div>
   );
-};
-
-export default PastEventsPage; 
+}

@@ -209,7 +209,7 @@ export default function PrivacyPolicyPage() {
             >
               <div className="flex items-center space-x-2">
                 <Clock className="w-4 h-4" />
-                <span>Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                <span>Last updated: January 1, 2025</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Bookmark className="w-4 h-4" />
