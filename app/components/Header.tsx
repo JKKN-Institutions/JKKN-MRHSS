@@ -38,6 +38,7 @@ const Navbar = () => {
         { name: "Founder Message", href: "/our-trust" },
         { name: "Our Management", href: "/management" },
         { name: "Why JKKN?", href: "/why-jkkn" },
+        { name: "dashboard", href: "/dashboard" },
       ],
     },
     {
