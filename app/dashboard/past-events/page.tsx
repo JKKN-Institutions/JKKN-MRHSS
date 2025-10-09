@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Search, Edit, Trash2, X, FileText, Calendar, Eye } from 'lucide-react';
-import { getPosts, savePosts, updateCategoryPostCounts } from '@/app/admin/utils/storage';
+import { getPosts, savePosts, updateCategoryPostCounts, getMedia, saveMedia } from '@/app/admin/utils/storage';
 import { Post } from '@/app/admin/types';
 import toast from 'react-hot-toast';
 import { format } from 'date-fns';
@@ -28,6 +28,7 @@ export default function PastEventsPage() {
     author: 'Admin User',
     status: 'draft' as 'published' | 'draft',
   });
+  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     loadPosts();
@@ -90,6 +91,44 @@ export default function PastEventsPage() {
   const closeModal = () => {
     setIsModalOpen(false);
     setEditingPost(null);
+  };
+
+  const handleThumbnailFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please select an image file');
+      return;
+    }
+
+    try {
+      setIsUploading(true);
+      const reader = new FileReader();
+      const dataUrl: string = await new Promise((resolve, reject) => {
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+
+      const media = getMedia();
+      const newMedia = {
+        id: Date.now().toString(),
+        name: file.name,
+        url: dataUrl,
+        size: file.size,
+        type: file.type,
+        uploadedAt: new Date().toISOString(),
+      };
+      saveMedia([newMedia, ...media]);
+      setFormData({ ...formData, thumbnail: newMedia.url });
+      toast.success('Thumbnail uploaded');
+    } catch (err) {
+      console.error(err);
+      toast.error('Failed to upload image');
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -427,15 +466,31 @@ export default function PastEventsPage() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Thumbnail URL
+                    Thumbnail Image
                   </label>
-                  <input
-                    type="url"
-                    value={formData.thumbnail}
-                    onChange={(e) => setFormData({ ...formData, thumbnail: e.target.value })}
-                    className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500"
-                    placeholder="https://example.com/image.jpg"
-                  />
+                  <div className="flex items-center gap-4">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleThumbnailFileChange}
+                      className="block w-full text-sm text-gray-900 dark:text-gray-100 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100"
+                    />
+                    {isUploading && (
+                      <span className="text-sm text-gray-500">Uploading...</span>
+                    )}
+                  </div>
+                  {formData.thumbnail && (
+                    <div className="mt-3 flex items-center gap-3">
+                      <img src={formData.thumbnail} alt="Thumbnail preview" className="w-20 h-20 object-cover rounded" />
+                      <button
+                        type="button"
+                        onClick={() => setFormData({ ...formData, thumbnail: '' })}
+                        className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-200 dark:hover:bg-gray-600"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  )}
                 </div>
 
                 <div>

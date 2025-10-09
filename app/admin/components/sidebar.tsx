@@ -8,6 +8,7 @@ import {
   Calendar,
   FileText,
   FolderOpen,
+  Users,
   Image,
   Settings,
   LogOut,
@@ -23,6 +24,7 @@ const menuItems = [
   { icon: Calendar, label: 'Events', href: '/dashboard/events', emoji: '📅' },
   { icon: FileText, label: 'Posts', href: '/dashboard/posts', emoji: '📝' },
   { icon: FolderOpen, label: 'Categories', href: '/dashboard/categories', emoji: '📂' },
+  { icon: Users, label: 'Users', href: '/dashboard/users', emoji: '👤' },
 ];
 
 const categoryMenuItems = [
