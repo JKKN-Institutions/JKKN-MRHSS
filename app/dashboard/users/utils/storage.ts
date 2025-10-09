@@ -71,6 +71,10 @@ export function listUsers(query: UserQueryParams = {}): PaginatedResult<User> {
 }
 
 export function getUser(id: string): User | null { return users.find(u => u.id === id) ?? null; }
+export function findUserByEmail(email: string): User | null {
+  const e = email.toLowerCase();
+  return users.find(u => u.email.toLowerCase() === e) ?? null;
+}
 export function createUser(data: Omit<User, 'id'|'dateJoined'>): User {
   const user: User = { ...data, id: uid('user'), dateJoined: new Date().toISOString(), password: data.password ?? undefined };
   users.unshift(user);

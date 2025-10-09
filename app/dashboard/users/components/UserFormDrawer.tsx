@@ -12,6 +12,7 @@ interface Props {
 
 export default function UserFormDrawer({ open, user, onClose, onSubmit }: Props) {
   const [form, setForm] = useState<Partial<User>>({});
+  const [confirmPassword, setConfirmPassword] = useState('');
   useEffect(() => { setForm(user ?? {}); }, [user]);
   const roleOptions = useMemo(() => listRoles().map(r => r.name), []);
 
@@ -28,6 +29,11 @@ export default function UserFormDrawer({ open, user, onClose, onSubmit }: Props)
           <input className="h-10 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-3" placeholder="Last Name" value={form.lastName ?? ''} onChange={(e)=>setForm(v=>({ ...v, lastName: e.target.value }))} />
           <input className="h-10 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-3" placeholder="Username" value={form.username ?? ''} onChange={(e)=>setForm(v=>({ ...v, username: e.target.value }))} />
           <input className="h-10 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-3" placeholder="Email" value={form.email ?? ''} onChange={(e)=>setForm(v=>({ ...v, email: e.target.value }))} />
+          <div className="grid grid-cols-1 gap-2">
+            <input type="password" className="h-10 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-3" placeholder={user ? 'New Password (optional)' : 'Password'} value={form.password ?? ''} onChange={(e)=>setForm(v=>({ ...v, password: e.target.value }))} />
+            <input type="password" className="h-10 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-3" placeholder={user ? 'Confirm New Password' : 'Confirm Password'} value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} />
+            <div className="text-xs text-gray-500 dark:text-gray-400">Minimum 6 characters. Leave blank to keep existing password.</div>
+          </div>
           <select className="h-10 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-3" value={(form.status as string) ?? 'active'} onChange={(e)=>setForm(v=>({ ...v, status: e.target.value as any }))}>
             {['active','inactive','suspended'].map(s => <option key={s} value={s}>{s}</option>)}
           </select>
@@ -43,7 +49,21 @@ export default function UserFormDrawer({ open, user, onClose, onSubmit }: Props)
         </div>
         <div className="p-4 border-t border-gray-200 dark:border-gray-800 flex justify-end gap-2">
           <button onClick={onClose} className="rounded-md px-3 py-2 bg-gray-100 dark:bg-gray-900 hover:bg-gray-200 dark:hover:bg-gray-800">Cancel</button>
-          <button onClick={()=>onSubmit(form)} className="rounded-md px-3 py-2 bg-blue-600 text-white hover:bg-blue-700">Save</button>
+          <button onClick={()=>{
+            const pwd = String(form.password ?? '');
+            if (!user) {
+              if (pwd.length < 6) { alert('Password must be at least 6 characters.'); return; }
+              if (pwd !== confirmPassword) { alert('Passwords do not match.'); return; }
+            } else {
+              if (pwd) {
+                if (pwd.length < 6) { alert('Password must be at least 6 characters.'); return; }
+                if (pwd !== confirmPassword) { alert('Passwords do not match.'); return; }
+              } else {
+                delete (form as any).password;
+              }
+            }
+            onSubmit(form);
+          }} className="rounded-md px-3 py-2 bg-blue-600 text-white hover:bg-blue-700">Save</button>
         </div>
       </div>
     </div>

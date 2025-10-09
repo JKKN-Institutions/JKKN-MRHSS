@@ -15,17 +15,16 @@ import {
   Menu,
   X,
 } from 'lucide-react';
-import { logout } from '../utils/auth';
+import { getUser, logout } from '../utils/auth';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
-const menuItems = [
+const baseMenuItems = [
   { icon: LayoutDashboard, label: 'Dashboard', href: '/dashboard', emoji: '📊' },
   { icon: Calendar, label: 'Events', href: '/dashboard/events', emoji: '📅' },
   { icon: FileText, label: 'Posts', href: '/dashboard/posts', emoji: '📝' },
   { icon: FolderOpen, label: 'Categories', href: '/dashboard/categories', emoji: '📂' },
-  { icon: Users, label: 'Users', href: '/dashboard/users', emoji: '👤' },
-];
+] as const;
 
 const categoryMenuItems = [
   { icon: FileText, label: 'School News', href: '/dashboard/school-news', emoji: '🏫' },
@@ -72,7 +71,12 @@ export default function Sidebar() {
             Main Menu
           </p>
           <div className="space-y-1">
-            {menuItems.map((item) => {
+            {(function(){
+              const u = getUser();
+              const items = [...baseMenuItems];
+              if (u && String(u.role).toLowerCase() === 'administrator') items.push({ icon: Users, label: 'Users', href: '/dashboard/users', emoji: '👤' } as any);
+              return items;
+            })().map((item) => {
               const Icon = item.icon;
               const isActive = pathname === item.href;
 
