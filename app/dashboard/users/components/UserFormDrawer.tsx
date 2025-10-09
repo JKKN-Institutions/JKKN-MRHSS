@@ -1,6 +1,7 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { User } from '../../users/types';
+import { listRoles } from '../utils/storage';
 
 interface Props {
   open: boolean;
@@ -12,6 +13,7 @@ interface Props {
 export default function UserFormDrawer({ open, user, onClose, onSubmit }: Props) {
   const [form, setForm] = useState<Partial<User>>({});
   useEffect(() => { setForm(user ?? {}); }, [user]);
+  const roleOptions = useMemo(() => listRoles().map(r => r.name), []);
 
   return (
     <div className={`fixed inset-0 z-50 ${open ? '' : 'pointer-events-none'}`}>
@@ -29,11 +31,12 @@ export default function UserFormDrawer({ open, user, onClose, onSubmit }: Props)
           <select className="h-10 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-3" value={(form.status as string) ?? 'active'} onChange={(e)=>setForm(v=>({ ...v, status: e.target.value as any }))}>
             {['active','inactive','suspended'].map(s => <option key={s} value={s}>{s}</option>)}
           </select>
-          <select multiple className="min-h-24 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-3 py-2" value={(form.roles as string[]) ?? []} onChange={(e)=>{
-            const list = Array.from(e.target.selectedOptions).map(o=>o.value);
-            setForm(v=>({ ...v, roles: list }));
+          <select className="h-10 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-3" value={(form.roles as string[] | undefined)?.[0] ?? ''} onChange={(e)=>{
+            const selected = e.target.value;
+            setForm(v=>({ ...v, roles: selected ? [selected] : [] }));
           }}>
-            {['Admin','Faculty','Student','Staff','Guest'].map(r => <option key={r} value={r}>{r}</option>)}
+            <option value="">Select role</option>
+            {roleOptions.map(r => <option key={r} value={r}>{r}</option>)}
           </select>
           <input className="h-10 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-3" placeholder="Department" value={form.profile?.department ?? ''} onChange={(e)=>setForm(v=>({ ...v, profile: { ...(v.profile ?? {}), department: e.target.value } }))} />
           <input className="h-10 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-3" placeholder="Designation" value={form.profile?.designation ?? ''} onChange={(e)=>setForm(v=>({ ...v, profile: { ...(v.profile ?? {}), designation: e.target.value } }))} />

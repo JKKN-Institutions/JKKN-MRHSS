@@ -83,7 +83,9 @@ export default function UsersPage() {
         user={editing}
         onClose={()=>setDrawerOpen(false)}
         onSubmit={(data)=>{
-          if (editing) updateUser(editing.id, data as any); else createUser({ ...(data as User), profile: (data as any).profile ?? {}, roles: (data as any).roles ?? ['Student'], status: (data as any).status ?? 'active', twoFactorEnabled: false });
+          const role = (data as any).roles?.[0];
+          const roles = role ? [role] : [];
+          if (editing) updateUser(editing.id, { ...data, roles } as any); else createUser({ ...(data as User), profile: (data as any).profile ?? {}, roles: roles.length ? roles : ['Student'], status: (data as any).status ?? 'active', twoFactorEnabled: false });
           setDrawerOpen(false);
           setEditing(null);
           setQuery(v=>({ ...v }));
